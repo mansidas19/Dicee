@@ -37,7 +37,7 @@
             android:layout_weight="1"
             android:autoText="false"
             android:scrollHorizontally="false"
-            android:text="PLAYER 1"
+            android:text="    PLAYER 1"
             android:textColor="#3F51B5"
             android:textSize="30sp" />
 
@@ -46,7 +46,7 @@
             android:layout_width="174dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="PLAYER 2"
+            android:text="   PLAYER 2"
             android:textColor="#3F51B5"
             android:textSize="30sp" />
     </LinearLayout>
