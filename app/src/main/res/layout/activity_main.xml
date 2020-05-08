@@ -5,7 +5,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg5"
+    android:background="@drawable/bg4"
     tools:context=".MainActivity">
 
 
@@ -31,7 +31,7 @@
         android:autoText="false"
         android:scrollHorizontally="false"
         android:text="    PLAYER 1"
-        android:textColor="#3F51B5"
+        android:textColor="#FFF"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/image_leftDice"
         app:layout_constraintEnd_toStartOf="@+id/textView4"
@@ -46,7 +46,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:text="   PLAYER 2"
-        android:textColor="#3F51B5"
+        android:textColor="#FFF"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/image_rightDice"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,7 +90,8 @@
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         android:layout_marginBottom="101dp"
-        android:background="@android:color/holo_red_dark"
+        android:background="@drawable/custom_button"
+        android:onClick="playleft"
         android:text="@string/button_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
@@ -98,9 +99,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/rollButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_leftDice"
-        android:onClick="playleft"
-         />
+        app:layout_constraintTop_toBottomOf="@+id/image_leftDice" />
 
     <Button
         android:id="@+id/rollButton"
@@ -112,7 +111,8 @@
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         android:layout_marginBottom="102dp"
-        android:background="@android:color/holo_red_dark"
+        android:background="@drawable/custom_button"
+        android:onClick="playright"
         android:text="@string/button_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@android:color/background_light"
@@ -120,7 +120,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button4"
         app:layout_constraintTop_toBottomOf="@+id/image_rightDice"
-        android:onClick="playright"
         tools:ignore="OnClick" />
 
     <androidx.constraintlayout.widget.Guideline

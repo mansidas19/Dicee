@@ -2,6 +2,8 @@ package com.myproject.dicee;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
@@ -19,11 +21,13 @@ public class MainActivity extends AppCompatActivity {
     SoundPool mSoundPool;
     private int mLeftSoundId;
     private int mRightSoundId;
+    private int buzzer;
     private final float LEFT_VOLUME = 1.0f;
     private final float RIGHT_VOLUME = 1.0f;
     private final int NO_LOOP = 0;
     private final int PRIORITY = 0;
     private final float NORMAL_PLAY_RATE = 1.0f;
+    int number1=0,number2=0;
 
 
     @Override
@@ -31,9 +35,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mSoundPool = new SoundPool(7,AudioManager.STREAM_MUSIC,0);
-        mLeftSoundId = mSoundPool.load(this,R.raw.click, 1);
-        mRightSoundId = mSoundPool.load(this, R.raw.click, 1);
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP) {
+            AudioAttributes aa = new AudioAttributes.Builder()
+                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .setUsage(AudioAttributes.USAGE_MEDIA)
+                    .build();
+
+            // TODO: Create a new SoundPool
+            mSoundPool = new SoundPool.Builder()
+                    .setMaxStreams(10)
+                    .setAudioAttributes(aa)
+                    .build();
+            mLeftSoundId = mSoundPool.load(this, R.raw.click, 1);
+            mRightSoundId = mSoundPool.load(this, R.raw.click, 1);
+            buzzer = mSoundPool.load(this, R.raw.buzzer, 1);
+        }
+        else {
+            mSoundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
+            mLeftSoundId = mSoundPool.load(this, R.raw.click, 1);
+            mRightSoundId = mSoundPool.load(this, R.raw.click, 1);
+            buzzer = mSoundPool.load(this, R.raw.buzzer, 1);
+        }
         Button rollButton;
         Button button4;
         rollButton = (Button) findViewById(R.id.rollButton);
@@ -62,13 +84,15 @@ public class MainActivity extends AppCompatActivity {
 
                 Random randomNumberGenerator = new Random();
 
-                int number = randomNumberGenerator.nextInt(6);
+                number1 = randomNumberGenerator.nextInt(6);
 
-                Log.d("Dicee","the random no. is"+number);
+                Log.d("Dicee","the random no. is"+number1);
 
-                leftDice.setImageResource(diceArray[number]);
+                leftDice.setImageResource(diceArray[number1]);
 
                 mLeftSoundId=mSoundPool.play(mLeftSoundId,LEFT_VOLUME,RIGHT_VOLUME,PRIORITY,NO_LOOP,NORMAL_PLAY_RATE);
+
+                confirmation();
 
             }
         });
@@ -80,18 +104,37 @@ public class MainActivity extends AppCompatActivity {
 
                 Random randomNumberGenerator = new Random();
 
-                int number = randomNumberGenerator.nextInt(6);
+                number2 = randomNumberGenerator.nextInt(6);
 
-                Log.d("Dicee","the random no. is"+number);
+                Log.d("Dicee","the random no. is"+number2);
 
-                rightDice.setImageResource(diceArray[number]);
+                rightDice.setImageResource(diceArray[number2]);
 
                 mRightSoundId=mSoundPool.play(mRightSoundId,LEFT_VOLUME,RIGHT_VOLUME,PRIORITY,NO_LOOP,NORMAL_PLAY_RATE);
+
+                confirmation();
 
             }
         });
         }
+    private void confirmation() {
 
+        if (number1 == number2) {
+            buzzer=mSoundPool.play(buzzer,LEFT_VOLUME,RIGHT_VOLUME,PRIORITY,NO_LOOP,NORMAL_PLAY_RATE);
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setTitle("GAME OVER");
+            alert.setCancelable(false);
+            alert.setMessage("YOU LOST");
+            alert.setPositiveButton("EXIT", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int which) {
+                    finish();
+                }
+            });
+            alert.setNegativeButton("CONTINUE",  null);
+            alert.show();
+        }
+    }
     public void playleft(View view) {mSoundPool.play(mLeftSoundId, LEFT_VOLUME, RIGHT_VOLUME, PRIORITY, NO_LOOP, NORMAL_PLAY_RATE);
     }
 

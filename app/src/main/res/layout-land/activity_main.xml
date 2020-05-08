@@ -5,7 +5,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg5"
+    android:background="@drawable/bg4"
     tools:context=".MainActivity">
 
 
@@ -15,6 +15,8 @@
         android:layout_height="253dp"
         android:layout_marginStart="400dp"
         android:layout_marginLeft="400dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
@@ -84,7 +86,7 @@
         android:layout_marginLeft="32dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
-        android:background="@android:color/holo_red_dark"
+        android:background="@drawable/custom_button"
         android:text="@string/button_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
@@ -103,7 +105,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
-        android:background="@android:color/holo_red_dark"
+        android:background="@drawable/custom_button"
         android:text="@string/button_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@android:color/background_light"
