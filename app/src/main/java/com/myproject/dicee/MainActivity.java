@@ -120,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
     private void confirmation() {
 
         if (number1 == number2) {
-            buzzer=mSoundPool.play(buzzer,LEFT_VOLUME,RIGHT_VOLUME,PRIORITY,NO_LOOP,NORMAL_PLAY_RATE);
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.setTitle("GAME OVER");
             alert.setCancelable(false);
@@ -133,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
             });
             alert.setNegativeButton("CONTINUE",  null);
             alert.show();
+            buzzer=mSoundPool.play(buzzer,LEFT_VOLUME,RIGHT_VOLUME,PRIORITY,NO_LOOP,NORMAL_PLAY_RATE);
         }
     }
     public void playleft(View view) {mSoundPool.play(mLeftSoundId, LEFT_VOLUME, RIGHT_VOLUME, PRIORITY, NO_LOOP, NORMAL_PLAY_RATE);
