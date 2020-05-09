@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.InsetDrawable;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
@@ -138,7 +141,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
             alert.setNegativeButton("CONTINUE",  null);
-            alert.show();
+            AlertDialog dialog= alert.create();
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.RED));
+            dialog.show();
             buzzer=mSoundPool.play(buzzer,LEFT_VOLUME,RIGHT_VOLUME,PRIORITY,NO_LOOP,NORMAL_PLAY_RATE);
         }
     }
