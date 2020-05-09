@@ -1,7 +1,9 @@
 package com.myproject.dicee;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.media.AudioAttributes;
@@ -76,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         button4.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
 
@@ -97,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         rollButton.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
 
@@ -117,13 +121,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         }
+    @SuppressLint("ResourceType")
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void confirmation() {
 
         if (number1 == number2) {
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
             alert.setTitle("GAME OVER");
+            alert.setIcon(R.drawable.game2);
             alert.setCancelable(false);
-            alert.setMessage("YOU LOST");
+            alert.setMessage("!!!!YOU LOST!!!!");
             alert.setPositiveButton("EXIT", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int which) {
